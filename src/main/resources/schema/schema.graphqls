@@ -1,0 +1,62 @@
+type Mutation {
+    addStudent(student: StudentInput):Student
+    deleteStudent(studentId: String):String
+    addCourse(course: CourseInput):Student
+}
+
+type Query {
+    studentCourses(id: String) : Student
+    getCourse(id: String) : Course
+}
+
+input AddressInput {
+    firstAddress: String
+    secondAddress: String
+    city: String
+    state: String
+}
+
+input CourseInput {
+    title: String!
+}
+
+type Course{
+    id: String!
+    title: String!
+}
+
+type Information {
+    id: String!
+    email: String
+    phone: Int
+    address: Address
+}
+
+type Address {
+    id: String!
+    firstAddress: String
+    secondAddress: String
+    city: String
+    state: String
+}
+
+type Student{
+    id: String!
+    name: String!
+    lastname: String!
+    information: Information
+    courses: [Course]!
+}
+
+input InformationInput {
+    email: String
+    phone: Int
+    address: AddressInput
+}
+
+input StudentInput{
+    name: String!
+    lastname: String!
+    information: InformationInput
+    courses: [String]!
+}

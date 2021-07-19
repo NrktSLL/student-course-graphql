@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="initial table" author="nrkt" dbms="mysql" failOnError="true">
+        <comment>Initial create tables</comment>
+        <sqlFile
+                encoding="utf8"
+                path="classpath:db/changeset/Initial-Table.sql"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+
+    <changeSet id="initial data" author="nrkt" dbms="mysql" failOnError="true" runAlways="false">
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <not>-->
+<!--                <sqlCheck expectedResult="0">select count(*) from address where id is null</sqlCheck>-->
+<!--            </not>-->
+<!--        </preConditions>-->
+        <comment>Initial data</comment>
+        <sqlFile
+                encoding="utf8"
+                path="classpath:db/changeset/Initial-Data.sql"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: student-course-graphql:${APPLICATION_IMAGE_VERSION}
+    container_name: student-course-graphql
+    restart: ${RESTART_POLICY}
+    environment:
+      - ACTIVE_PROFILE
+      - LOGGING.LEVEL.ROOT
+      - MYSQL_HOST
+      - MYSQL_PORT
+      - MYSQL_USERNAME
+      - MYSQL_PASSWORD
+      - DB_NAME
+      - GENERATE_DDL
+      - HIBERNATE_DDL
+      - SHOW_SQL
+      - LIQUIBASE_ENABLED
+      - LIQUIBASE_CHANGE_LOG_PATH
+    ports:
+      - ${APPLICATION_IMAGE_PORT}:${APPLICATION_IMAGE_PORT}
+
+  mysql:
+    image: mysql:${MYSQL_IMAGE_VERSION}
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: ${RESTART_POLICY}
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    ports:
+      - 3306:3306
